@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0d14">
+  <title>تماشای مشترک</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎬%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vazirmatn@33.0.3/Vazirmatn-font-face.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- ورود -->
+  <section id="lobby" class="lobby">
+    <div class="card">
+      <h1>🎬 تماشای مشترک</h1>
+      <p class="muted">یه اتاق بساز، لینکش رو برای پارتنرت بفرست و با هم فیلم ببینید. صدا و تصویر هم داره.</p>
+      <label>اسمت
+        <input id="nameInput" maxlength="30" placeholder="مثلاً سارا" autocomplete="off">
+      </label>
+      <label>کد اتاق
+        <input id="roomInput" maxlength="64" placeholder="خالی بذاری خودش می‌سازه" autocomplete="off" dir="ltr">
+      </label>
+      <label>رمز اتاق (اختیاری)
+        <input id="passInput" type="password" maxlength="64" placeholder="اتاق جدید: رمز همین می‌شه · اتاق موجود: رمزش رو بزن" autocomplete="off" dir="ltr">
+      </label>
+      <div id="lobbyError" class="error hidden"></div>
+      <button id="joinBtn" class="primary">ورود به اتاق</button>
+    </div>
+  </section>
+
+  <!-- اتاق -->
+  <main id="app" class="app hidden">
+    <header class="topbar">
+      <div class="brand">🎬 تماشای مشترک</div>
+      <span id="status" class="status" title="وضعیت اتصال"></span>
+      <div class="spacer"></div>
+      <span id="roomLabel" class="pill" dir="ltr"></span>
+      <button id="copyLink">🔗 کپی لینک دعوت</button>
+    </header>
+
+    <div class="layout">
+      <section class="stage">
+        <div class="player" id="player">
+          <video id="video" playsinline controls controlsList="nofullscreen"></video>
+          <video id="screenView" class="screen-view hidden" autoplay playsinline controls></video>
+          <div id="overlay" class="overlay"></div>
+          <div id="countdown" class="countdown hidden"></div>
+          <button id="tapPlay" class="tap-play hidden">▶ برای پخش ضربه بزن</button>
+          <div id="emptyHint" class="empty">
+            هنوز ویدیویی انتخاب نشده.<br>از پایین لینک یا فایل ویدیو رو انتخاب کن.
+          </div>
+        </div>
+
+        <div class="source-bar">
+          <input id="urlInput" dir="ltr" placeholder="لینک مستقیم ویدیو (mp4 / webm / m3u8 ...)" autocomplete="off">
+          <button id="loadUrl">پخش لینک</button>
+          <label class="filebtn">
+            📁 فایل از سیستم
+            <input id="fileInput" type="file" accept="video/*,.mkv" hidden>
+          </label>
+          <button id="syncBtn" title="زمان و وضعیت من رو برای بقیه بفرست">🔄 همگام‌سازی</button>
+          <button id="fsBtn" title="تمام‌صفحه (F)">⛶</button>
+        </div>
+        <div id="hint" class="hint"></div>
+
+        <!-- جای افزونه‌هایی که زیر ویدیو UI می‌خوان -->
+        <div id="stageExtras" class="stage-extras"></div>
+      </section>
+
+      <aside class="side">
+        <div id="users" class="users"></div>
+        <div id="callGrid" class="call-grid hidden"></div>
+        <div class="panel tabs-wrap">
+          <div id="tabs" class="tabs"></div>
+          <div id="tabPanels" class="tab-panels"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- هسته -->
+  <script src="/core.js"></script>
+  <!-- افزونه‌ها: هر قابلیت = یه فایل تو public/features/ + یه خط اینجا (ترتیب = ترتیب تب‌ها) -->
+  <script src="/features/chat.js"></script>
+  <script src="/features/playlist.js"></script>
+  <script src="/features/subtitles.js"></script>
+  <script src="/features/room.js"></script>
+  <script src="/features/reactions.js"></script>
+  <script src="/features/countdown.js"></script>
+  <script src="/features/call.js"></script>
+  <script src="/features/hotkeys.js"></script>
+</body>
+</html>

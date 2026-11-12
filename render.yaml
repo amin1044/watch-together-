@@ -1,0 +1,16 @@
+# Render Blueprint: با این فایل Render خودش همه‌ی تنظیمات رو می‌خونه.
+# (New + ← Blueprint ← انتخاب ریپو). اگه Web Service معمولی می‌سازی لازمش نداری.
+services:
+  - type: web
+    name: watch-together
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      # اختیاری: سرور TURN برای وقتی که تماس مستقیم برقرار نمی‌شه. فرمت JSON، مثال تو README.
+      - key: ICE_SERVERS
+        sync: false

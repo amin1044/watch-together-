@@ -1,0 +1,16 @@
+{
+  "name": "watch-together",
+  "version": "2.0.0",
+  "description": "Watch videos together in sync: chat, playlist, subtitles, voice/video call, screen share",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
